@@ -8,6 +8,11 @@ public class Main {
     public static int squaresPlayed = 0;
     public static boolean hasWinner = false;
 
+    /**
+     * Main method to run the Tic Tac Toe game.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
