@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 public class Settings {
-    public static String[][] board = {};
-    public static int boardSize = 3;
+    private static String[][] board = {};
+    private static int boardSize = 3;
 
     /**
      * Initializes the game board with the specified size.<br><br>
