@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
-    public static final int MIN_BOARD_SIZE = 1;
-    public static final int MAX_BOARD_SIZE = 10;
+    private static final int MIN_BOARD_SIZE = 1;
+    private static final int MAX_BOARD_SIZE = 10;
 
-    public static char player = 'X';
-    public static int squaresPlayed = 0;
-    public static boolean hasWinner = false;
+    private static char player = 'X';
+    private static int squaresPlayed = 0;
+    private static boolean hasWinner = false;
 
     /**
      * Main method to run the Tic Tac Toe game.
