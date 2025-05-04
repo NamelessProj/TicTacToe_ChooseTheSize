@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 public class Settings {
+    // Static variables to hold the game state
     private static String[][] board = {};
     private static int boardSize = 3;
 
