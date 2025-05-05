@@ -4,6 +4,7 @@ public class Settings {
     // Static variables to hold the game state
     private static String[][] board = {};
     private static int boardSize = 3;
+    private static int lastNumberLength = 1;
 
     /**
      * Initializes the game board with the specified size.<br><br>
@@ -17,7 +18,7 @@ public class Settings {
         board = new String[boardSize][boardSize];
 
         // Getting thr number of char the last number has
-        int lastNumberLength = String.valueOf(boardSize * boardSize).length();
+        lastNumberLength = String.valueOf(getBoardSize()).length();
 
         // Creating the format string for leading zeros
         String format = "%0" + lastNumberLength + "d";
@@ -69,13 +70,16 @@ public class Settings {
         int col = (index - 1) % boardSize;
 
         // Check if the index is valid and not already occupied by a player
-        if (index < 1 || index > boardSize * boardSize || board[row][col].equals("X") || board[row][col].equals("O"))
+        if (index < 1 || index > getBoardSize() || board[row][col].contains("X") || board[row][col].contains("O"))
             return false; // Invalid move
 
         String strPlayer = Character.toString(player);
 
+        // Format the player character to match the length of the last number
+        String formatedPlayer = strPlayer.repeat(Math.max(0, lastNumberLength - 1)) + strPlayer;
+
         // Update the board with the player's symbol
-        board[row][col] = strPlayer;
+        board[row][col] = formatedPlayer;
         return true; // Valid move
     }
 
@@ -89,11 +93,14 @@ public class Settings {
     public static boolean checkIfWinner(char player) {
         String strPlayer = Character.toString(player);
 
+        // Format the player character to match the length of the last number
+        String formatedPlayer = strPlayer.repeat(Math.max(0, lastNumberLength - 1)) + strPlayer;
+
         // Check rows
         for (int i = 0; i < boardSize; i++) {
             boolean rowWin = true;
             for (int j = 0; j < boardSize; j++) {
-                if (!Objects.equals(board[i][j], strPlayer)) {
+                if (!Objects.equals(board[i][j], formatedPlayer)) {
                     rowWin = false;
                     break;
                 }
@@ -105,7 +112,7 @@ public class Settings {
         for (int j = 0; j < boardSize; j++) {
             boolean colWin = true;
             for (int i = 0; i < boardSize; i++) {
-                if (!Objects.equals(board[i][j], strPlayer)) {
+                if (!Objects.equals(board[i][j], formatedPlayer)) {
                     colWin = false;
                     break;
                 }
@@ -116,8 +123,8 @@ public class Settings {
         // Check diagonals
         boolean diagWin1 = true, diagWin2 = true;
         for (int i = 0; i < boardSize; i++) {
-            if (!Objects.equals(board[i][i], strPlayer)) diagWin1 = false;
-            if (!Objects.equals(board[i][boardSize - 1 - i], strPlayer)) diagWin2 = false;
+            if (!Objects.equals(board[i][i], formatedPlayer)) diagWin1 = false;
+            if (!Objects.equals(board[i][boardSize - 1 - i], formatedPlayer)) diagWin2 = false;
         }
         return diagWin1 || diagWin2;
     }
