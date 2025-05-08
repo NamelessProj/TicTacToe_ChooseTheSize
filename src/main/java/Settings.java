@@ -52,12 +52,43 @@ public class Settings {
      */
     public static void printBoard() {
         System.out.println();
+
+        // Creating a StringBuilder to build the board string
+        StringBuilder sb = new StringBuilder();
+        String separator = buildSeparator();
+
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                System.out.print(board[i][j] + " ");
+                if (j > 0)
+                    sb.append("|");
+                sb.append(board[i][j]);
             }
-            System.out.println();
+            sb.append("\n");
+
+            if (i < boardSize - 1) {
+                sb.append(separator)
+                        .append("\n");
+            }
         }
+
+        System.out.println(sb);
+    }
+
+    /**
+     * Builds the separator string for the board.<br><br>
+     * This method creates a string of dashes and plus signs to separate the rows of the board.
+     *
+     * @return The separator string.
+     */
+    private static String buildSeparator() {
+        String cellSep = "-".repeat(lastNumberLength);
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < boardSize; j++) {
+            if (j > 0)
+                sb.append("+");
+            sb.append(cellSep);
+        }
+        return sb.toString();
     }
 
     /**
