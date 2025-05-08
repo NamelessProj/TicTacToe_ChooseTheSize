@@ -5,6 +5,7 @@ public class Settings {
     private static String[][] board = {};
     private static int boardSize = 3;
     private static int lastNumberLength = 1;
+    private static int fullBoardSize = 9;
 
     /**
      * Initializes the game board with the specified size.<br><br>
@@ -17,8 +18,11 @@ public class Settings {
         boardSize = size;
         board = new String[boardSize][boardSize];
 
-        // Getting thr number of char the last number has
-        lastNumberLength = String.valueOf(getBoardSize()).length();
+        // Calculating the total number of squares on the board
+        fullBoardSize = boardSize * boardSize;
+
+        // Getting the number of characters the last number has
+        lastNumberLength = String.valueOf(fullBoardSize).length();
 
         // Creating the format string for leading zeros
         String format = "%0" + lastNumberLength + "d";
@@ -34,12 +38,12 @@ public class Settings {
 
     /**
      * Returns the size of the board.<br><br>
-     * This method calculates the total number of squares on the board.
+     * This method returns the number of squares on the board.
      *
      * @return The total number of squares on the board.
      */
     public static int getBoardSize() {
-        return boardSize * boardSize;
+        return fullBoardSize;
     }
 
     /**
@@ -70,7 +74,7 @@ public class Settings {
         int col = (index - 1) % boardSize;
 
         // Check if the index is valid and not already occupied by a player
-        if (index < 1 || index > getBoardSize() || board[row][col].contains("X") || board[row][col].contains("O"))
+        if (index < 1 || index > fullBoardSize || board[row][col].contains("X") || board[row][col].contains("O"))
             return false; // Invalid move
 
         String strPlayer = Character.toString(player);
