@@ -58,7 +58,7 @@ public class Main {
                 }
 
                 // Update the player and increment the squares played
-                player = player == 'X' ? 'O' : 'X';
+                changeActivePlayer();
                 squaresPlayed++;
             }
 
@@ -71,13 +71,16 @@ public class Main {
             // Ask if the players want to play again
             System.out.println();
             System.out.print("Do you want to play again? (y/n): ");
-            char playAgain = scanner.next().charAt(0);
+            char playAgain = scanner.next().toLowerCase().charAt(0);
 
-            if (playAgain == 'y' || playAgain == 'Y') {
+            if (playAgain == 'y') {
                 // Reset the game state
-                player = 'X';
+                changeActivePlayer();
                 squaresPlayed = 0;
                 hasWinner = false;
+
+                System.out.println();
+                System.out.println("Starting a new game...");
             } else
                 break;
         }
@@ -91,5 +94,15 @@ public class Main {
         // Print the final message
         System.out.println();
         System.out.println("Thank you for playing!");
+    }
+
+    /**
+     *  Changes the active player.<br><br>
+     *  This method toggles the active player between 'X' and 'O'.
+     *
+     *  @return void
+     */
+    private static void changeActivePlayer() {
+        player = (player == 'X') ? 'O' : 'X';
     }
 }
