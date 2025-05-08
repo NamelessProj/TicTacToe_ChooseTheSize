@@ -99,8 +99,6 @@ public class Main {
     /**
      *  Changes the active player.<br><br>
      *  This method toggles the active player between 'X' and 'O'.
-     *
-     *  @return void
      */
     private static void changeActivePlayer() {
         player = (player == 'X') ? 'O' : 'X';
