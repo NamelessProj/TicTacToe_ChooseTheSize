@@ -29,30 +29,30 @@ public class Main {
             }
 
             // Initialize the board
-            Settings.initializeBoard(size);
+            Settings settings = new Settings(size);
 
             // Get the number of squares on the board
-            int numberOfSquares = Settings.getBoardSize();
+            int numberOfSquares = settings.getBoardSize();
 
             // Run the game loop
             while (squaresPlayed < numberOfSquares) {
                 // Print the board
-                Settings.printBoard();
+                settings.printBoard();
 
                 // Get the player's move
                 System.out.print("Player " + player + ", enter your move (1 to " + numberOfSquares + "): ");
                 int move = scanner.nextInt();
 
                 // Validate the move
-                if (!Settings.updateBoard(move, player)) {
+                if (!settings.updateBoard(move, player)) {
                     System.out.println("Invalid move. Try again.");
                     continue;
                 }
 
                 // Check for a win
-                if (Settings.checkIfWinner(player)) {
+                if (settings.checkIfWinner(player)) {
                     hasWinner = true;
-                    Settings.printBoard();
+                    settings.printBoard();
                     System.out.println("Player " + player + " wins!");
                     break;
                 }
@@ -64,7 +64,7 @@ public class Main {
 
             // Check for a draw
             if (!hasWinner) {
-                Settings.printBoard();
+                settings.printBoard();
                 System.out.println("It's a draw!");
             }
 
@@ -81,15 +81,14 @@ public class Main {
 
                 System.out.println();
                 System.out.println("Starting a new game...");
-            } else
+            } else {
+                settings.printBoard();
                 break;
+            }
         }
 
         // Close the scanner
         scanner.close();
-
-        // Print the final board
-        Settings.printBoard();
 
         // Print the final message
         System.out.println();
