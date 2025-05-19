@@ -2,27 +2,28 @@ import java.util.Objects;
 
 public class Settings {
     // Static variables to hold the game state
-    private String[][] board = {};
-    private int boardSize = 3;
-    private int lastNumberLength = 1;
-    private int fullBoardSize = 9;
+    private final String[][] board;
+    private final int boardSize;
+    private final int lastNumberLength;
+    private final int fullBoardSize;
 
     /**
-     * Initializes the game board with the specified size.<br><br>
-     * This method creates a 2D array representing the game board and fills it with numbers.
+     * Constructor to initialize the board.
+     * <p>
+     * This constructor takes the size of the board as input and initializes the board with numbers.
      *
-     * @param size The size of the board (number of rows and columns).
+     * @param size The size of the board (number of squares in one row/column).
      */
     Settings(int size) {
         // Setting the board size and creating the board
-        boardSize = size;
-        board = new String[boardSize][boardSize];
+        this.boardSize = size;
+        this.board = new String[size][size];
 
         // Calculating the total number of squares on the board
-        fullBoardSize = boardSize * boardSize;
+        this.fullBoardSize = boardSize * boardSize;
 
         // Getting the number of characters the last number has
-        lastNumberLength = String.valueOf(fullBoardSize).length();
+        this.lastNumberLength = String.valueOf(fullBoardSize).length();
 
         // Creating the format string for leading zeros
         String format = "%0" + lastNumberLength + "d";
