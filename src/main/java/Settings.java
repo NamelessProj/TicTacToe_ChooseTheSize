@@ -38,7 +38,8 @@ public class Settings {
     }
 
     /**
-     * Returns the size of the board.<br><br>
+     * Returns the size of the board.
+     * <p>
      * This method returns the number of squares on the board.
      *
      * @return The total number of squares on the board.
@@ -48,7 +49,8 @@ public class Settings {
     }
 
     /**
-     * Prints the current state of the board.<br><br>
+     * Prints the current state of the board.
+     * <p>
      * This method iterates through the board array and prints each element.
      */
     public void printBoard() {
@@ -76,7 +78,8 @@ public class Settings {
     }
 
     /**
-     * Builds the separator string for the board.<br><br>
+     * Builds the separator string for the board.
+     * <p>
      * This method creates a string of dashes and plus signs to separate the rows of the board.
      *
      * @return The separator string.
@@ -93,7 +96,8 @@ public class Settings {
     }
 
     /**
-     * Updates the board with the player's move.<br><br>
+     * Updates the board with the player's move.
+     * <p>
      * This method takes an index and a player character ('X' or 'O') as input.
      *
      * @param index The index of the cell to be updated (1 to boardSize * boardSize).
@@ -120,7 +124,8 @@ public class Settings {
     }
 
     /**
-     * Checks if the game has a winner or a draw.<br><br>
+     * Checks if the game has a winner or a draw.
+     * <p>
      * This method checks all possible winning combinations and returns true if the game is over.
      *
      * @param player The player character ('X' or 'O') to check for a win.
