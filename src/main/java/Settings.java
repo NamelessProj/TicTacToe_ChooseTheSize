@@ -2,10 +2,10 @@ import java.util.Objects;
 
 public class Settings {
     // Static variables to hold the game state
-    private static String[][] board = {};
-    private static int boardSize = 3;
-    private static int lastNumberLength = 1;
-    private static int fullBoardSize = 9;
+    private String[][] board = {};
+    private int boardSize = 3;
+    private int lastNumberLength = 1;
+    private int fullBoardSize = 9;
 
     /**
      * Initializes the game board with the specified size.<br><br>
@@ -13,7 +13,7 @@ public class Settings {
      *
      * @param size The size of the board (number of rows and columns).
      */
-    public static void initializeBoard(int size) {
+    Settings(int size) {
         // Setting the board size and creating the board
         boardSize = size;
         board = new String[boardSize][boardSize];
@@ -42,7 +42,7 @@ public class Settings {
      *
      * @return The total number of squares on the board.
      */
-    public static int getBoardSize() {
+    public int getBoardSize() {
         return fullBoardSize;
     }
 
@@ -50,7 +50,7 @@ public class Settings {
      * Prints the current state of the board.<br><br>
      * This method iterates through the board array and prints each element.
      */
-    public static void printBoard() {
+    public void printBoard() {
         System.out.println();
 
         // Creating a StringBuilder to build the board string
@@ -80,7 +80,7 @@ public class Settings {
      *
      * @return The separator string.
      */
-    private static String buildSeparator() {
+    private String buildSeparator() {
         String cellSep = "-".repeat(lastNumberLength);
         StringBuilder sb = new StringBuilder();
         for (int j = 0; j < boardSize; j++) {
@@ -99,7 +99,7 @@ public class Settings {
      * @param player The player character ('X' or 'O').
      * @return true if the move is valid and the board is updated, false otherwise.
      */
-    public static boolean updateBoard(int index, char player) {
+    public boolean updateBoard(int index, char player) {
         // Calculate the row and column based on the index
         int row = (index - 1) / boardSize;
         int col = (index - 1) % boardSize;
@@ -125,7 +125,7 @@ public class Settings {
      * @param player The player character ('X' or 'O') to check for a win.
      * @return true if the game is over, false otherwise.
      */
-    public static boolean checkIfWinner(char player) {
+    public boolean checkIfWinner(char player) {
         String strPlayer = Character.toString(player);
 
         // Format the player character to match the length of the last number
