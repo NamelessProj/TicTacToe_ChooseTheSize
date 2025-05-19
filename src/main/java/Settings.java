@@ -139,34 +139,58 @@ public class Settings {
 
         // Check rows
         for (int i = 0; i < boardSize; i++) {
-            boolean rowWin = true;
-            for (int j = 0; j < boardSize; j++) {
-                if (!Objects.equals(board[i][j], formatedPlayer)) {
-                    rowWin = false;
-                    break;
-                }
+            if (checkRows(formatedPlayer, i)) {
+                return true;
             }
-            if (rowWin) return true;
         }
 
         // Check columns
         for (int j = 0; j < boardSize; j++) {
-            boolean colWin = true;
-            for (int i = 0; i < boardSize; i++) {
-                if (!Objects.equals(board[i][j], formatedPlayer)) {
-                    colWin = false;
-                    break;
-                }
+            if (checkColumns(formatedPlayer, j)) {
+                return true;
             }
-            if (colWin) return true;
         }
 
         // Check diagonals
         boolean diagWin1 = true, diagWin2 = true;
         for (int i = 0; i < boardSize; i++) {
-            if (!Objects.equals(board[i][i], formatedPlayer)) diagWin1 = false;
-            if (!Objects.equals(board[i][boardSize - 1 - i], formatedPlayer)) diagWin2 = false;
+            if (!Objects.equals(board[i][i], formatedPlayer))
+                diagWin1 = false;
+            if (!Objects.equals(board[i][boardSize - 1 - i], formatedPlayer))
+                diagWin2 = false;
         }
         return diagWin1 || diagWin2;
+    }
+
+    /**
+     * Checks if all elements in a row are equal to the player character.
+     *
+     * @param player The player character ('X' or 'O').
+     * @param row The row index to check.
+     * @return true if all elements in the row are equal to the player character, false otherwise.
+     */
+    private boolean checkRows(String player, int row) {
+        for (int j = 0; j < boardSize; j++) {
+            if (!Objects.equals(board[row][j], player)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if all elements in a column are equal to the player character.
+     *
+     * @param player The player character ('X' or 'O').
+     * @param col The column index to check.
+     * @return true if all elements in the column are equal to the player character, false otherwise.
+     */
+    private boolean checkColumns(String player, int col) {
+        for (int i = 0; i < boardSize; i++) {
+            if (!Objects.equals(board[i][col], player)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
